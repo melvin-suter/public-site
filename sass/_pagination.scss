@@ -1,0 +1,26 @@
+.pagination {
+    padding-top: 1rem;
+    .pagination-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .link {
+            a {
+                text-decoration: none;
+                color: #000;
+                margin: 0px 0.25rem;
+                padding: 0.25rem;
+                border-radius: 5px;
+                background-color: #ddd;
+
+                &.active {
+                    background-color: #bbb;
+                    color: #888;
+                    font-weight: bold;
+                }
+            }
+
+        }
+    }
+}

@@ -5,12 +5,18 @@ nav {
     .nav-item {
         text-align: center;
         width: 100%;
-        padding: 0.5rem;
         border-bottom: 1px solid #777777;
         background-color: #444444;
 
+        &:last-child {
+            border-bottom: none;
+        }
+
         a{
             color: #ffffff;
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
             text-decoration: none;
         }
     }

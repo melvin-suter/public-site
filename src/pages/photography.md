@@ -1,0 +1,91 @@
+---
+layout: layouts/page.njk
+title: Photography
+date: 1976-12-21
+tags: 
+- page
+- nav
+images:
+- IMG_1387.jpg
+- IMG_1811.jpg
+- IMG_1663.jpg
+- IMG_1664.jpg
+- IMG_1919.jpg
+- IMG_1964.jpg
+- IMG_0570-Edit.jpg
+- IMG_2074.jpg
+- IMG_2098.jpg
+- IMG_2111.jpg
+---
+
+<style>
+    .image-library {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+
+    .image-library .img {
+        flex-grow: 1;
+        height: 30vh
+    }
+
+    .image-library .img img {
+        min-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+
+    }
+
+    .image-viewer {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: #333C;
+        justify-content: center;
+        align-items: center;
+    }
+    .image-viewer  img {
+        max-height: 100%;
+        max-width: 100%;
+        padding: 1rem;
+    }
+</style>
+
+<div class="image-viewer">
+        <img class="image-viewer-element"/>
+</div>
+
+<div class="image-library">
+{%- for img in images %}
+    <div class="img">
+        <img src="https://suterdev-public.s3.eu-west-2.amazonaws.com/github-pages-public/{{ img }}"/>
+    </div>
+{%- endfor %}
+</div>
+
+
+<script>
+(() => {
+    document.querySelectorAll(".img").forEach(element => {
+        element.addEventListener("click",(ev) => {
+            document.querySelector(".image-viewer").style.display = "flex";
+            document.querySelector(".image-viewer-element").src = ev.srcElement.currentSrc;
+        });
+    });
+
+    document.querySelector(".image-viewer").addEventListener("click",(ev) => {
+            document.querySelector(".image-viewer").style.display = "none";
+    });
+
+    document.querySelector(".image-viewer").style.display = "none";
+
+})();
+</script>

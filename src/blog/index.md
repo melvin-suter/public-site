@@ -1,13 +1,11 @@
 ---
 title: Blog
-layout: layouts/page.njk
-tags: 
+layout: layouts/blog-overview.njk
+tags:
 - page
 - nav
+pagination:
+  data: collections.blog
+  size: 5
+  reverse: true
 ---
-
-<ul>
-{%- for post in collections.blog -%}
-  <li><a href="{{post.url}}">{{ post.data.title }}</a></li>
-{%- endfor -%}
-</ul>

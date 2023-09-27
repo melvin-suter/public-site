@@ -1,0 +1,176 @@
+---
+layout: layouts/page.njk
+title: Home
+date: 1970-12-21
+tags: 
+- page
+- nav
+---
+
+
+
+<center style="margin-bottom: 2rem;">
+
+<h2>Hi!</h2>
+
+<img style="float: right; max-width: 20%; margin-left: 2rem;" src="/assets/portrait.jpg">
+
+My name is Melvin Suter, I'm a System Engineer from Switzerland that started is journey through the IT world in 2011 with an apprenticeship. From there I switched jobs to get a position as a consultant and help out other IT departments. Currently my main focus is Linux and Infrastructure. That includes basic maintenance of Linux and infrastructure-systems as well as implement infrastructure projects and developing new products based on Linux and Open Source applications.
+
+In my spare time I like to code stuff, work with my 3D printer and build on my homelab. As a typical IT nerd, I obviously like to play games too. A relatively new hobby I've picked up is photography. Landscape and macro photography I really enjoy, but also abstract and animal subjects are a lot of fun. Still finding my place in the big world of photos. :-)
+
+If you have questions or want to have a chat, feel free to reach out to me: contact@&lt;thedomainyouareon&gt;
+</center>
+
+
+
+<style>
+.tldr-boxes {
+    border-radius: 1rem;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #eee;
+    width: 100%;
+    justify-content: center;
+}
+
+.tldr {
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23%;
+}
+
+@media (max-width: 500px) {
+
+    .tldr {
+        width: 45%;
+    }
+
+}
+
+.tldr .icon {
+    height: 3rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.tldr .icon svg {
+    height: 100%;
+}
+
+.tldr .title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+.tldr .data {
+    color: #666;
+}
+
+a.tldr:focus .icon,
+a.tldr:hover .icon,
+a.tldr:focus .data,
+a.tldr:hover .data,
+a.tldr:focus .title,
+a.tldr:hover .title 
+ {
+    color: #000 !important;
+}
+</style>
+
+
+<div class="tldr-boxes">
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+        </svg>
+        </div>
+        <div class="title">Birthday</div>
+        <div class="data">1996-08-20</div>
+    </div>
+
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+            <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+            <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        </div>
+        <div class="title">Experience</div>
+        <div class="data">I started my IT career in 2011</div>
+    </div>
+
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-translate" viewBox="0 0 16 16">
+        <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z"/>
+        <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z"/>
+        </svg>
+        </div>
+        <div class="title">Languages</div>
+        <div class="data">German (native speaker), English (fluently)</div>
+    </div>
+    
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">
+        <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
+        </svg>
+        </div>
+        <div class="title">Coding Languages</div>
+        <div class="data">C# .NET, PHP, Python, BASH, Powershell, ASP.Net Core, VBS, JS, CSS, SQL, Typescript</div>
+    </div>
+    
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+        <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+        </svg>
+        </div>
+        <div class="title">Expertises</div>
+        <div class="data">Linux, Windows Ecosystem, VMware vSphere, Veeam Backup, Storage & SAN, Horizon VDI, Mailing, Networking</div>
+    </div>
+    
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-braces" viewBox="0 0 16 16">
+        <path d="M2.114 8.063V7.9c1.005-.102 1.497-.615 1.497-1.6V4.503c0-1.094.39-1.538 1.354-1.538h.273V2h-.376C3.25 2 2.49 2.759 2.49 4.352v1.524c0 1.094-.376 1.456-1.49 1.456v1.299c1.114 0 1.49.362 1.49 1.456v1.524c0 1.593.759 2.352 2.372 2.352h.376v-.964h-.273c-.964 0-1.354-.444-1.354-1.538V9.663c0-.984-.492-1.497-1.497-1.6zM13.886 7.9v.163c-1.005.103-1.497.616-1.497 1.6v1.798c0 1.094-.39 1.538-1.354 1.538h-.273v.964h.376c1.613 0 2.372-.759 2.372-2.352v-1.524c0-1.094.376-1.456 1.49-1.456V7.332c-1.114 0-1.49-.362-1.49-1.456V4.352C13.51 2.759 12.75 2 11.138 2h-.376v.964h.273c.964 0 1.354.444 1.354 1.538V6.3c0 .984.492 1.497 1.497 1.6z"/>
+        </svg>
+        </div>
+        <div class="title">Experience in Linux Products</div>
+        <div class="data">Ansible, Zabbix, Graylog, Apache Guacamole, Rancher, phpIPAM, Nginx, PHP.....</div>
+    </div>
+    
+    <div class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-patch-check" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+        <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911l-1.318.016z"/>
+        </svg>
+        </div>
+        <div class="title">Certificates & Courses</div>
+        <div class="data">RHCSA (Red Hat RHEL), VSP-DCV (VMware vSphere), VMCE (Veeam Availability Suite), Misc. C# Coding</div>
+    </div>
+    
+    <a href="https://github.com/melvin-suter" class="tldr">
+        <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        </div>
+        <div class="title">Github</div>
+        <div class="data">melvin-suter</div>
+    </a>
+</div>

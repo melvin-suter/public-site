@@ -1,0 +1,34 @@
+---
+title: Blog
+layout: layouts/page.njk
+---
+
+{{ content | safe }}
+
+<div class="blog-overview">
+{%- for post in pagination.items -%}
+  <a href="{{post.url}}" class="overview-post">
+    <div class="title">{{ post.data.title }}</div>
+    <div class="content">
+      {{ post.content | trimShort | safe }}
+    </div>
+  </a>
+{%- endfor -%}
+</div>
+
+<div class="pagination">
+
+  <div class="pagination-menu">
+    <div class="link"><a href="{{ pagination.href.previous}}">Previous</a></div>
+{%- for pageEntry in pagination.pages %}
+    <div class="link">
+      {%- if page.url != pagination.hrefs[ loop.index0 ] %} 
+        <a href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a>
+      {% else %}
+        <a class="active" >{{ loop.index }}</a>
+      {% endif %}
+    </div>
+{%- endfor %}
+    <div class="link"><a href="{{ pagination.href.next}}">Next</a></div>
+  </div>
+</div>
