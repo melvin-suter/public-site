@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "npx sass sass/bundle.scss dist/bundle.css",
-    "build": "rm -rf dist/* ; cd src ; npx @11ty/eleventy --output=../dist",
+    "build": "rm -rf dist/* ; npx sass sass/bundle.scss dist/bundle.css ; cd src ; npx @11ty/eleventy --output=../dist",
     "run": "concurrently --kill-others \"sass --watch sass/bundle.scss dist/bundle.css\" \"cd src ; npx @11ty/eleventy --serve --output=../dist\""
   },
   "keywords": [],

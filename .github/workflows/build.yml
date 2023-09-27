@@ -1,0 +1,40 @@
+name: build-deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "master"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: build
+      run: | 
+        npm install
+        npm run build
+      with:
+        name: github-pages
+        path: |
+          dist
+
+
+  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    steps:
+      - name: Deploy artifact
+        id: deployment
+        uses: actions/deploy-pages@v1
