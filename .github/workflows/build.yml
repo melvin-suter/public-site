@@ -18,10 +18,6 @@ jobs:
       run: | 
         npm install
         npm run build
-      with:
-        name: github-pages
-        path: |
-          dist
 
 
   deploy:
@@ -38,3 +34,7 @@ jobs:
       - name: Deploy artifact
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          name: github-pages
+          path: |
+            dist
