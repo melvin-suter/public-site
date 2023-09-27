@@ -1,0 +1,27 @@
+---
+title: Hello World
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/bundle.css" rel="stylesheet"/>
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <div class="layout-outter">
+      <div class="layout-nav">
+        <div class="nav-image-wrapper"> 
+          <img src="/assets/portrait.jpg" class="nav-image">
+        </div>
+        <h1>Melvin Suter</h1>
+        {% include "_includes/layouts/nav.njk" %}
+      </div>
+      <div class="layout-content">
+        {{ content | safe }}
+      </div>
+    </div>
+  </body>
+</html>

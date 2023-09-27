@@ -1,0 +1,25 @@
+.post {
+
+    h1:first-child {
+        margin-bottom: 0px;
+    }
+
+    .date {
+        font-style: italic;
+        margin-bottom: 1rem;
+        float: right;
+    }
+
+    .tags {
+        margin-top: 0.5rem;
+    }
+
+    pre code {
+        padding: 1rem;
+        border-radius: 5px;
+        display: block;
+        background-color: #333;
+        font-family: 'Courier New', Courier, monospace;
+        color: #fff;
+    }
+}
