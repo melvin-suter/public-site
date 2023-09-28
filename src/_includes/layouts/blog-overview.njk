@@ -8,9 +8,14 @@ layout: layouts/page.njk
 <div class="blog-overview">
 {%- for post in pagination.items -%}
   <a href="{{post.url}}" class="overview-post">
+    {% if post.data.previewImage != "" %}
+    <div class="previewImage">
+        <img src="https://suterdev-public.s3.eu-west-2.amazonaws.com/github-pages-public/{{ post.data.previewImage }}"/>
+    </div>
+    {% endif %}
     <div class="title">{{ post.data.title }}</div>
     <div class="content">
-      {{ post.content | trimShort | safe }}
+      {{ post.content | trimShort | removeHTML }}
     </div>
   </a>
 {%- endfor -%}

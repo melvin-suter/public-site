@@ -2,7 +2,6 @@
 title: MySQL Tuning
 date: 2023-07-17
 tags: 
-- blog
 - tech
 ---
 

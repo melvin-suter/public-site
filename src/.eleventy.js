@@ -17,14 +17,20 @@ module.exports = function(eleventyConfig) {
         let length = 0;
         let parts = [];
 
-        if(content.length > 100) {
-            content.split(" ").forEach( (item) => {
+        let newContent = content.replace( /(<([^>]+)>)/ig, '');
+
+        if(newContent.length > 100) {
+            newContent.split(" ").forEach( (item) => {
+                
                 if(length + item.length > 100){
                     return;
                 }
 
                 parts.push(item);
                 length += item.length;
+        
+
+    
             });
 
             parts.push("...");
@@ -32,9 +38,18 @@ module.exports = function(eleventyConfig) {
             return parts.join(" ");
         }
         
-        return content;
+        return newContent;
     });
 
+    eleventyConfig.addFilter("removeHTML", (str) => {
+
+        str = str.toString();
+            
+        // Regular expression to identify HTML tags in
+        // the input string. Replacing the identified
+        // HTML tag with a null string.
+        return str.replace( /(<([^>]+)>)/ig, '');
+    });
 
 
 };

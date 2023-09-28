@@ -1,12 +1,12 @@
 ---
-title: Tech Blog
+title: Photography
 layout: layouts/blog-overview.njk
 tags:
 - page
 - nav
-date: 1981-01-01
+date: 1982-02-01
 pagination:
-  data: collections.tech
+  data: collections.photography
   size: 5
   reverse: true
 ---
