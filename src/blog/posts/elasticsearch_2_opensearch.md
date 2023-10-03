@@ -15,8 +15,10 @@ We are upgrading from 4.2 to 6.0. This can only be done with steps between like 
 Use these commands to upgrade:
 
 ```bash
-
+#####################
 # Upgrade 4.2 to 4.4
+#####################
+
 fromRepo=4.2
 toRepo=4.4
 toVersion=-4.4.25-1.el8
@@ -36,8 +38,10 @@ systemctl restart mongod
 mongo --eval "db.adminCommand( { setFeatureCompatibilityVersion: \"$toRepo\" } )"
 
 
-
+#####################
 # Upgrade 4.4 to 5.0
+#####################
+
 fromRepo=4.4
 toRepo=5.0
 toVersion=-5.0.21-1.el8
@@ -45,8 +49,10 @@ toVersion=-5.0.21-1.el8
 # Run same script
 
 
-
+#####################
 # Upgrade 5.0 to 6.0
+#####################
+
 fromRepo=5.0
 toRepo=6.0
 toVersion=
@@ -70,7 +76,7 @@ I like to start graylog up quickly after the installation to let it connect to o
 
 If graylog acts up because of a missmatch with elastic/opensearch versions, you can force it into a specific version with this setting:
 
-```
+```ini
 elasticsearch_version = 7
 ```
 

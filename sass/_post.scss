@@ -24,13 +24,23 @@
         font-size: 1rem;
     }
 
-    pre code {
-        padding: 1rem;
-        border-radius: 5px;
-        display: block;
+   pre {
         background-color: #333;
         font-family: 'Courier New', Courier, monospace;
         color: #fff;
+        border-radius: 5px;
+        margin: 0px;
+        padding: 0.5rem 1rem;
+        code {
+            &, * {
+                font-family: 'Courier New', Courier, monospace !important;
+
+            }
+            background-color: transparent;
+            color: #fff;
+            margin: 0px;
+            padding: 0px;
+        }
     }
     
 }

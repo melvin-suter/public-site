@@ -1,8 +1,12 @@
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
+
 module.exports = function(eleventyConfig) {
   
     // Copy `img/` to `_site/img`
     eleventyConfig.addPassthroughCopy("assets");
   
+    eleventyConfig.addPlugin(syntaxHighlight);
 
     const { DateTime } = require("luxon");
 
