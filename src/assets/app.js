@@ -3,7 +3,7 @@
 
     /* Jump Down */
     $(".jump-down").on('click',() => {
-      $(".layout-outter").animate({ scrollTop: $(document).height() }, 300);
+      $(".layout-outter").animate({ scrollTop: $(".layout-content").height() }, 300);
     });
 
 
