@@ -52,6 +52,37 @@ module.exports = function(eleventyConfig) {
     });
 
 
+    // Search Indexer
+    eleventyConfig.addCollection("searchIndex", function(collection) {
+
+        var fullCollection = collection.getAll().map(hit => {
+            return  hit;
+        })
+
+        return fullCollection;
+    });
+
+    eleventyConfig.addFilter('dumpSafe', (value) => {
+        const postData = value.map((post) => {
+          return {
+            title: post.data.title,
+            content: post.content,
+            url: post.url
+            /*
+            date: post.date,
+            url: post.url,
+            data: {
+              title: post.data.title,
+              excerpt: post.data.excerpt,
+            },*/
+          };
+        });
+      
+        return JSON.stringify({
+            searchData: postData,
+        }, null, 2);
+    });
+
 };
 
 

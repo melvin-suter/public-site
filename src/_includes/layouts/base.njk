@@ -8,21 +8,44 @@ title: Hello World
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/bundle.css" rel="stylesheet"/>
+    <script src="/assets/jquery-3.7.1.min.js"></script>
+
     <title>{{ title }}</title>
   </head>
   <body>
     <div class="layout-outter">
       <div class="layout-nav">
-        <div class="nav-image-wrapper"> 
-          <img src="/assets/logo.png" class="nav-image">
+        <div class="topper">
+          <div class="nav-image-wrapper"> 
+            <img src="/assets/logo.png" class="nav-image">
+          </div>
+          <h1>Melvin Suter</h1>
+      
+          <div class="search-form">
+            <input type="search" class="nav-search-input" placeholder="Search..."/>
+          </div>
         </div>
-        <h1>Melvin Suter</h1>
-     
-        {% include "_includes/layouts/nav.njk" %}
+
+        <div class="bottom">
+          {% include "_includes/layouts/nav.njk" %}
+        </div>
       </div>
       <div class="layout-content">
         {{ content | safe }}
       </div>
     </div>
+
+    <script>
+      (() => {
+        $(".nav-search-input").on('keyup', (ev) => {
+          if(ev.keyCode == 13){
+            window.location.href="/search#" + $(".nav-search-input").val();
+          }
+        });
+        
+        $(".nav-search-input").val(window.location.hash.substr(1))
+
+      })();
+    </script>
   </body>
 </html>

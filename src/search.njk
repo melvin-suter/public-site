@@ -1,0 +1,79 @@
+---
+layout: layouts/page.njk
+title: Search
+eleventyExcludeFromCollections: true
+---
+
+<input type="text" class="search-input" placeholder="Search..."/>
+
+
+
+<div class="search-overview results">
+
+</div>
+
+
+
+
+<script>
+    (() => {
+
+
+        var trimShort = (content) => {
+
+            let length = 0;
+            let parts = [];
+
+            let newContent = content.replace( /(<([^>]+)>)/ig, '');
+
+            if(newContent.length > 100) {
+                newContent.split(" ").forEach( (item) => {
+                    
+                    if(length + item.length > 100){
+                        return;
+                    }
+
+                    parts.push(item);
+                    length += item.length;
+        
+                });
+
+                parts.push("...");
+
+                return parts.join(" ");
+            }
+            
+            return newContent;
+        }
+
+        var searchData = {};
+        $.get( "/search.json", function( data ) {
+            searchData = data;
+            startSearch();
+        });
+
+        var startSearch = () => {
+            let searchText = $(".search-input").val();
+            $(".results").html("");
+
+            window.location.hash = searchText;
+
+            searchData.searchData.forEach( (page) => {
+                if(page.title.toLowerCase().indexOf(searchText) >= 0 || page.content.toLowerCase().indexOf(searchText) >=0){
+                    let html = '<a href="'+page.url+'" class="search-post">';
+                    html += '<div class="title">'+page.title+'</div>';
+                    html += '<div class="content">' + trimShort(page.content) + '</div>';
+                    html += '</a>';
+                    $(".results").append(html);
+                }
+            });
+        };
+
+        $('.search-input').on('keyup',( () => {
+            startSearch();
+        }));
+
+        $(".search-input").val(window.location.hash.substr(1))
+        
+    })();
+</script>

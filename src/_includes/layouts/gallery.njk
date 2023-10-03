@@ -57,7 +57,7 @@ images: []
 <div class="image-library">
 {%- for img in images %}
     <div class="img">
-        <img src="https://suterdev-public.s3.eu-west-2.amazonaws.com/github-pages-public/{{ img }}"/>
+        <img src="https://suterdev-public-resized.s3.eu-west-2.amazonaws.com/github-pages-public/{{ img }}"/>
     </div>
 {%- endfor %}
 </div>
@@ -68,7 +68,7 @@ images: []
     document.querySelectorAll(".img").forEach(element => {
         element.addEventListener("click",(ev) => {
             document.querySelector(".image-viewer").style.display = "flex";
-            document.querySelector(".image-viewer-element").src = ev.srcElement.currentSrc;
+            document.querySelector(".image-viewer-element").src = ev.srcElement.currentSrc.replace('suterdev-public-resized','suterdev-public');
         });
     });
 

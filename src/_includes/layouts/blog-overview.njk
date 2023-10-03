@@ -10,7 +10,7 @@ layout: layouts/page.njk
   <a href="{{post.url}}" class="overview-post">
     {% if post.data.previewImage != "" %}
     <div class="previewImage">
-        <img src="https://suterdev-public.s3.eu-west-2.amazonaws.com/github-pages-public/{{ post.data.previewImage }}"/>
+        <img src="https://suterdev-public-resized.s3.eu-west-2.amazonaws.com/github-pages-public/{{ post.data.previewImage }}"/>
     </div>
     {% endif %}
     <div class="title">{{ post.data.title }}</div>
