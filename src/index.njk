@@ -19,7 +19,7 @@ But you are welcome to pet it and look around. If you wanna get some news, here 
 
 
 <div class="blog-overview">
-    {% set postslist = (collections.post | reverse).slice(0,5) %}
+    {% set postslist = (collections.blog | reverse).slice(0,5) %}
 
 {%- for post in postslist -%}
   <a href="{{post.url}}" class="overview-post">
