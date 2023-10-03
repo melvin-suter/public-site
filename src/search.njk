@@ -53,7 +53,7 @@ eleventyExcludeFromCollections: true
         });
 
         var startSearch = () => {
-            let searchText = $(".search-input").val();
+            let searchText = $(".search-input").val().toLowerCase();
             $(".results").html("");
 
             window.location.hash = searchText;

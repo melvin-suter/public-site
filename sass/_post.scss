@@ -15,6 +15,15 @@
         margin-top: 0.5rem;
     }
 
+    code {
+        border-radius: 5px;
+        background-color: rgb(241, 175, 175);
+        color: rgb(209, 0, 0);
+        padding: 0.15rem 0.25rem;
+        font-family: monospace;
+        font-size: 1rem;
+    }
+
     pre code {
         padding: 1rem;
         border-radius: 5px;
@@ -23,6 +32,7 @@
         font-family: 'Courier New', Courier, monospace;
         color: #fff;
     }
+    
 }
 
 
