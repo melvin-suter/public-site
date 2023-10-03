@@ -28,6 +28,29 @@ html,body,.layout-outter {
         & > h1:first-child {
             margin-top: 0px;
         }
+
+        pre {
+            position: relative;
+
+            .copy-button {
+                display: none;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+
+                outline: none;
+                border: 1px solid #888;
+                background-color: #444;
+                color: #fff;
+                padding: 0.25rem 0.5rem;
+            }
+
+            &:hover {
+                .copy-button {
+                    display: block;
+                }
+            }
+        }
     }
 
     .layout-nav {
@@ -47,6 +70,10 @@ html,body,.layout-outter {
             flex-direction: column;
             justify-content: start;
             align-items: center;
+        }
+
+        .jump-down {
+            display: none;
         }
 
         .bottom {
@@ -88,6 +115,10 @@ html,body,.layout-outter {
                 outline: none;
             }
         }
+    }
+
+    .layout-footer {
+        display: none;
     }
 }
 

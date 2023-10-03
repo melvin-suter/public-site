@@ -60,7 +60,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("searchIndex", function(collection) {
 
         var fullCollection = collection.getAll().map(hit => {
-            return  hit;
+            return hit;
         })
 
         return fullCollection;

@@ -1,7 +1,7 @@
 ---
 title: Linux Basic Security
+date: 2023-07-17
 tags: 
-- tech
 - kb
 - linux
 ---

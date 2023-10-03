@@ -1,7 +1,7 @@
 ---
 title: Exchange Online SMTP Annonymous Relay
+date: 2023-07-17
 tags: 
-- tech
 - kb
 - linux
 ---

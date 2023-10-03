@@ -26,6 +26,10 @@
                 justify-content: center;
                 align-items: center;
             }
+
+            .bottom {
+                display: none;
+            }
             
             .nav-image-wrapper {
                 width: 30%;
@@ -42,6 +46,21 @@
                 width: 100%;
             }
             
+        }
+
+        .jump-down {
+            display: block !important;
+            text-align: center;
+            width: 100%;
+            color: #fff;
+            padding: 0.5rem;
+            border-bottom: 1px solid #777777;
+            background-color: #444444;
+        }
+
+        .layout-footer {
+            display: block;
+            width: 100%;
         }
 
         .layout-content {

@@ -2,7 +2,6 @@
 title: Apache2 and Nextcloud showing wrong Source IP behind Proxy
 date: 2023-07-17
 tags: 
-- tech
 - linux
 ---
 

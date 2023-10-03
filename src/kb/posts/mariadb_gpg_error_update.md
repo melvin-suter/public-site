@@ -1,7 +1,7 @@
 ---
 title: MariaDB GPG error on update
+date: 2023-07-17
 tags: 
-- tech
 - kb
 - linux
 ---

@@ -1,8 +1,8 @@
 ---
 title: Elasticsearch 2 Opensearch
+date: 2023-10-03
 tags: 
-- tech
-- post
+- blog
 - linux
 ---
 

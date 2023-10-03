@@ -2,7 +2,6 @@
 title: YubiKey Setup SSH
 date: 2022-01-01
 tags: 
-- tech
 - kb
 - linux
 ---

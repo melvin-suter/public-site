@@ -1,7 +1,7 @@
 ---
 title: Run as System User
+date: 2023-07-17
 tags: 
-- tech
 - kb
 ---
 

@@ -1,0 +1,40 @@
+.toast-handler {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+        
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    row-gap: 0.5rem;
+
+    .toast {
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem;
+        max-width: 100%;
+        min-width: 0px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &.toast-info {
+            background-color: #EEE;
+        }
+
+        &.toast-success {
+            background-color: #c5f8d2;
+        }
+
+        .toast-closer {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+
+            svg {
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+        }
+    }
+}

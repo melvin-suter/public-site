@@ -1,7 +1,7 @@
 ---
 title: Swisscom Fritzbox Setup
+date: 2023-07-17
 tags: 
-- tech
 - kb
 ---
 

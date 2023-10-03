@@ -2,7 +2,6 @@
 title: MySQL Tuning
 date: 2023-07-17
 tags: 
-- tech
 ---
 
 Tuning a MySQL instance can be difficult. Happely there is a tool to help you out.

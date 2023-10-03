@@ -2,7 +2,6 @@
 title: Reconnect Smartwatch with new Phone
 date: 2022-12-21
 tags: 
-- tech
 ---
 
 You got a new phone? Greate for you. But now your smartwatch won't connect to it. There is a simple fix for that.

@@ -1,7 +1,7 @@
 ---
 title: Use GUI Applications over putty
+date: 2023-07-17
 tags: 
-- tech
 - kb
 ---
 

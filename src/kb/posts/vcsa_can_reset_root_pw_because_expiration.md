@@ -1,7 +1,7 @@
 ---
 title: vCenter Reset Root Login Expired
+date: 2023-07-17
 tags: 
-- tech
 - kb
 - vmware
 ---

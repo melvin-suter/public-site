@@ -1,7 +1,7 @@
 ---
 title: Shrink Thin Provisioned Disk
+date: 2023-07-17
 tags: 
-- tech
 - kb
 ---
 

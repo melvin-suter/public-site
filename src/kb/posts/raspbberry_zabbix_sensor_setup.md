@@ -1,7 +1,7 @@
 ---
 title: Setup Raspberry Pi Sensor for Zabbix
+date: 2023-07-17
 tags: 
-- tech
 - kb
 - linux
 ---

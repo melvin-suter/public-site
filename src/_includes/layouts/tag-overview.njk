@@ -1,27 +1,12 @@
 ---
 layout: layouts/base.njk
-title: Home
-date: 1970-12-21
-tags: 
-- page
-- nav
 ---
 
-<h1>Welcome</h1>
-
-
-
-<center style="margin-bottom: 2rem;">
-Kiwi welcomes you to this Knowledge-Base. Sadly Kiwi can't wave. (It has no arms.)
-<img src="/assets/home_logo.png" style="display: block; margin: 1rem;"/>
-But you are welcome to pet it and look around. If you wanna get some news, here are my newest blog entries:
-</center>
-
+{{ content | safe }}
 
 <div class="blog-overview">
-    {% set postslist = (collections.post | reverse).slice(0,5) %}
-
-{%- for post in postslist -%}
+{% set taglist = collections[ tag ] %}
+{%- for post in taglist | reverse -%}
   <a href="{{post.url}}" class="overview-post">
     {% if post.data.previewImage != "" %}
     <div class="previewImage">
