@@ -1,7 +1,21 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
+const markdownIt = require('markdown-it')
+const markdownItAttrs = require('markdown-it-attrs')
+
 
 module.exports = function(eleventyConfig) {
+
+
+    // Allow classes in markdown
+    const markdownItOptions = {
+        html: true,
+        breaks: true,
+        linkify: true
+    }
+    
+    const markdownLib = markdownIt(markdownItOptions).use(markdownItAttrs)
+    eleventyConfig.setLibrary('md', markdownLib)
   
     // Copy `img/` to `_site/img`
     eleventyConfig.addPassthroughCopy("assets");
@@ -15,6 +29,11 @@ module.exports = function(eleventyConfig) {
 
         return date.year + "-" + date.month + "-" + date.day;
     });
+
+    eleventyConfig.addFilter("dirname", (path) => {
+        return path.split("/").slice(0,-1).join("/");
+    });
+
 
     eleventyConfig.addFilter("trimShort", (content) => {
 

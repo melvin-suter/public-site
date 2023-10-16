@@ -23,15 +23,15 @@ fromRepo=4.2
 toRepo=4.4
 toVersion=-4.4.25-1.el8
 
-sed -i 's;$fromRepo;$toRepo;' /etc/yum.repos.d/mongodb-org.repo
+sed -i "s;$fromRepo;$toRepo;" /etc/yum.repos.d/mongodb-org.repo
 
-dnf install -y mongodb-org$toVersion
-dnf install -y mongodb-org-database$toVersion
-dnf install -y mongodb-org-database-tools-extra$toVersion
-dnf install -y mongodb-org-mongos$toVersion
-dnf install -y mongodb-org-server$toVersion
-dnf install -y mongodb-org-shell$toVersion
-dnf install -y mongodb-org-tools$toVersion
+dnf install -y mongodb-org$toVersion \
+  mongodb-org-database$toVersion \
+  mongodb-org-database-tools-extra$toVersion \
+  mongodb-org-mongos$toVersion \
+  mongodb-org-server$toVersion \
+  mongodb-org-shell$toVersion \
+  mongodb-org-tools$toVersion
 
 systemctl restart mongod
 
@@ -60,13 +60,6 @@ toVersion=
 # Run same script
 ```
 
-If you run into a startup problem with the service, this command might fix it:
-
-```bash
-sed 's;Environment="MONGODB_CONFIG_OVERRIDE_NOFORK=1";#Environment="MONGODB_CONFIG_OVERRIDE_NOFORK=1";' /usr/lib/systemd/system/mongod.service
-```
-
-
 # Step 2 - Install Opensearch
 
 You can do this manually or with a script/ansible role.
@@ -81,6 +74,16 @@ elasticsearch_version = 7
 ```
 
 See <a href="https://github.com/Graylog2/graylog2-server/issues/12897">https://github.com/Graylog2/graylog2-server/issues/12897</a>
+
+You have to edit 2 settings manually:
+
+```yml
+# Let Opensearch run on a different port while migrating
+http.port: 9211
+
+# Allow reindexing from elasticsearch
+reindex.remote.allowlist: ["localhost:9200"]
+```
 
 # Step 3 - Prepare Bash
 
@@ -170,12 +173,13 @@ You can now start a reindex script to migrate data like this:
 ```bash
 curl -XGET $elasticServer/_cat/indices?v 2>/dev/null | cat | awk '{print $3}' |tail -n+2 | while read indexName ; do
 
+  echo "################################################"
   echo "$(date) - $indexName - create"
   curl -XPUT $opensearchServer/$indexName  -H 'Content-Type: application/json'  -d '{
     "settings": {
       "index": {
         "blocks" : {
-          "write" : "true",
+          "write" : "false",
           "metadata" : "false",
           "read" : "false"
         },
@@ -183,10 +187,11 @@ curl -XGET $elasticServer/_cat/indices?v 2>/dev/null | cat | awk '{print $3}' |t
       "number_of_replicas": "0"
       }
     }
-  }' > /dev/null 2>&1
+  }'
 
 
 
+  echo "################################################"
   echo "$(date) - $indexName - start reindex"
 
   curl http://$opensearchServer/_reindex?pretty -XPOST -H 'Content-Type: application/json' -d "{
@@ -199,14 +204,19 @@ curl -XGET $elasticServer/_cat/indices?v 2>/dev/null | cat | awk '{print $3}' |t
       \"dest\": {
         \"index\": \"$indexName\"
       }
-    }" > /dev/null 2>&1
+    }"
 
 
 
+  echo "################################################"
   echo "$(date) - $indexName - delete"
-  curl -XDELETE $elasticServer/$indexName > /dev/null 2>&1
+  curl -XDELETE $elasticServer/$indexName
 
+  echo "################################################"
   echo "$(date) - $indexName - done"
+  echo "################################################"
+  echo "################################################"
+
 done
 ```
 

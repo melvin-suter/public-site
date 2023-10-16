@@ -42,6 +42,24 @@
             padding: 0px;
         }
     }
+
+
+    blockquote {
+        background: #ccc;
+        padding: 0.25rem 1rem;
+        border-radius: 1rem;
+        margin: 1rem 0px;
+
+        &.danger {
+            background-color: #f00;
+            color: #FFF;
+            font-weight: bold;
+        }
+    }
+
+    h2,h3,h4,h5,h6 {
+        margin-top: 2.5rem;
+    }
     
 }
 
