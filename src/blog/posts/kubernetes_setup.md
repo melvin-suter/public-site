@@ -5,6 +5,7 @@ date: 2023-10-05
 tags: 
 - blog
 - linux
+- kubernetes
 ---
 
 # THIS IS STILL WIP #
@@ -95,149 +96,56 @@ Looks good.
 
 ## Rancher Setup
 
-> Allthough I'll be showing stable here, I used alpha as the current stable version is not compatible with kubernetes 1.27
-
-Lets begin installing rancher on our k3s00 cluster:
-
-```bash
-# Add Repository
-helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
-
-# Create Namespace
-kubectl create namespace cattle-system
-```yubikey-setup-ssh.md (liquid)
-[1] [11ty] Writing ../dist/blog/index.html from ./blog/index.md (liquid)
-
-For rancher we need cert-manager, but I wan't to use let's encrypt for almost everything. So we definitely need cert-manager:
-
-```bash
-# If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.0/cert-manager.crds.yaml
-
-# Add the Jetstack Helm repository
-helm repo add jetstack https://charts.jetstack.io
-
-# Update your local Helm chart repository cache
-helm repo update
-
-# Install the cert-manager Helm chart
-helm install cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --create-namespace \
-  --version v1.13.0
-```
-
-And we can see the cert-manager working:
-
-```bash
-[root@k3s00-01 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-59b7f65948-mxt69              1/1     Running   0          39s
-cert-manager-cainjector-7fd8f6bbbf-vmt4b   1/1     Running   0          39s
-cert-manager-webhook-787cd749dc-msscl      1/1     Running   0          39s
-```
-
-> We are going to take a little shortcut here.
-> Usually I would let let's encrypt sign the ingress certs. But because ranger will only be available from controlled jump-hosts, where I can easily add certs, we will use self-signed certificates. This has the advantage of beeing a lot simpler to setup, than Let's Encrypt DNS based issuers.
-
-Let's install ranger:
-
-```bash
-# All Kubernetes apps will be available with the tld apps.suter.dev, except for some public facing stuff
-helm install rancher rancher-stable/rancher \
-  --namespace cattle-system \
-  --set hostname=rancher.apps.suter.dev \
-  --set bootstrapPassword=SuperAdmin1234
-```
-
-After the next chapter we can access it with the browser and change the admin password.
+We are going to install rancher now, you can have a look here: <a href="/blog/posts/kubernetes_setup_rancher">Kubernetes Setup - Rancher</a>
 
 ## KubeVIP
 
-Before we can go any further, we need a VIP for our cluster.
-
-```bash
-# Dependencies
-dnf install jq
-
-# Install RBAC
-kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
-
-# Config
-export VIP=10.10.126.30
-export INTERFACE=ens33
-export KVVERSION=$(curl -sL https://api.github.com/repos/kube-vip/kube-vip/releases | jq -r ".[0].name")
-
-alias kube-vip="ctr image pull ghcr.io/kube-vip/kube-vip:$KVVERSION; ctr run --rm --net-host ghcr.io/kube-vip/kube-vip:$KVVERSION vip /kube-vip"
-
-kube-vip manifest daemonset \
-    --interface $INTERFACE \
-    --address $VIP \
-    --inCluster \
-    --taint \
-    --controlplane \
-    --services \
-    --arp \
-    --leaderElection > setup.yaml
-
-kubectl apply -f setup.yaml
-```
-
-Let's check if everything works:
-
-```bash
-[root@k3s00-01 ~]# kubectl get pods -n kube-system 
-NAME                                     READY   STATUS      RESTARTS   AGE
-(...)
-kube-vip-ds-mtrkp                        1/1     Running     0          34s
-kube-vip-ds-vwz8g                        1/1     Running     0          34s
-kube-vip-ds-xwnf2                        1/1     Running     0          34s
-(...)
-```
+Before we can go any further, we need a VIP for our cluster. Have a look here: <a href="/blog/posts/kubernetes_setup_kubevip">Kubernetes Setup - KubeVIP</a>
 
 ## NFS Storage Provider
 
-We are almost there. So now let's see if we can set it up.
+For storage setup, have a look here: <a href="/blog/posts/kubernetes_setup_storage">Kubernetes Setup - Storage</a>
 
-First we're going to add 2 shares on the synology nas:
-1. kubernetes_tier1 -> on SSD
-2. kubernetes_tier2 -> on HDD
+## Harbor
 
-Those will have the NFS Rule:
-* IP: 10.10.126.0/24
-* Privilege: Read/Write
-* Squash: no
-* Security: sys
-* Enable Async: yes
-* Allow subfolder mount: yes
+We need a centralized image repository for our own images.
+So we're going to setup a harbor: <a href="/blog/posts/kubernetes_setup_harbor">Kubernetes Setup - Harbor</a>
 
-So let's add 2 storage classes to represent this:
-
-> We need to use NFSv3 right now, because Synology and Linux don't like each other with 4.1
-
-```
-helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-
-helm install nfs-provisioner-tier1 nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-    --set nfs.server=10.10.121.20 \
-    --set nfs.path=/volume1/kubernetes_tier1/k3s00 \
-    --set nfs.mountOptions[0]=vers=3 \
-    --set storageClass.name=nfs-tier1
-
-helm install nfs-provisioner-tier2 nfs-suabdir-external-provisioner/nfs-subdir-external-provisioner \
-    --set nfs.server=10.10.121.20 \
-    --set nfs.path=/volume2/kubernetes_tier2/k3s00 \
-    --set nfs.mountOptions[0]=vers=3 \
-    --set storageClass.name=nfs-tier2
-```
 
 ## Rundeck
 
 We now need an automation platform. So let's get a rundeck up.
-Use my github repo for that: https://github.com/melvin-suter/rundeck-kubernetes
+Have a look here how to do it: <a href="/blog/posts/kubernetes_setup_rundeck">Kubernetes Setup - Rundeck</a>
 
-> This will also deploy a pod for creating a inventory from a vcenter.
+## Cert-Manager
 
-Things we need to get done:
+Let's setup Let's Encrypt. I'm using digital ocean as a DNS provider.
 
-- Add a SSH Key
+```yaml
+apiVersion: v1
+data:
+  access-token: >-
+    SOMETOKENGOESHERE
+kind: Secret
+metadata:
+  name: digitalocean-dns
+  namespace: cert-manager
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: SOMEEMAILGOESHERE
+    preferredChain: ''
+    privateKeySecretRef:
+      name: letsencrypt
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          digitalocean:
+            tokenSecretRef:
+              key: access-token
+              name: digitalocean-dns
+```
