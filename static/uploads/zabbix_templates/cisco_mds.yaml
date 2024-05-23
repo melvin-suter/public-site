@@ -1,0 +1,143 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+    - uuid: a5dde1ad84e0470b99f561955d0adc41
+      name: Templates/Import
+  templates:
+    - uuid: e1313f9fde4d4e7bb6c6ce28d7de9fb7
+      template: 'Cisco MDS'
+      name: 'Cisco MDS'
+      templates:
+        - name: 'Cisco Switch'
+      groups:
+        - name: Templates/Import
+      discovery_rules:
+        - uuid: e98d42205ef746379ffe08d870fea14a
+          name: 'MDS FAN Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#SNMPVALUE},1.3.6.1.4.1.9.9.117.1.4.1.1.1]'
+          key: mds.fan.discovery
+          delay: 1h
+          description: 'The table of power supply status maintained by the environmental monitor card.'
+          item_prototypes:
+            - uuid: 0dee99971be04f18a7c3e0c525bbe7a8
+              name: 'FAN {#SNMPINDEX} - Status'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.4.1.1.1.{#SNMPINDEX}'
+              key: 'mds.fan.status[{#SNMPINDEX}]'
+              valuemap:
+                name: FanStatus
+              trigger_prototypes:
+                - uuid: ef6eb9c991e341b1a863a01d26b43c58
+                  expression: 'last(/Cisco MDS/mds.fan.status[{#SNMPINDEX}])<>2'
+                  name: 'FAN {#SNMPINDEX} - Status not "up"'
+                  priority: WARNING
+                  manual_close: 'YES'
+        - uuid: 63f8f89370584254b768df61ede12c16
+          name: 'MDS PSU Discovery'
+          type: SNMP_AGENT
+          snmp_oid: 'discovery[{#SNMPVALUE},1.3.6.1.4.1.9.9.117.1.1.1.1.1]'
+          key: mds.psu.discovery
+          delay: 1h
+          description: 'The table of power supply status maintained by the environmental monitor card.'
+          item_prototypes:
+            - uuid: dad245e497ed4733895eb828181ef98b
+              name: 'PSU {#SNMPINDEX} - Available Current'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.1.1.1.3.{#SNMPINDEX}'
+              key: 'mds.psu.avail-current[{#SNMPINDEX}]'
+              history: 30d
+            - uuid: 1ccd9683094e454baa20d78285ce95c8
+              name: 'PSU {#SNMPINDEX} - Drawn Current'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.4.1.1.1.{#SNMPINDEX}'
+              key: 'mds.psu.drawn-current[{#SNMPINDEX}]'
+              history: 30d
+              trends: 180d
+            - uuid: 91a6bbee0fc94dcf81841435d38f4e35
+              name: 'PSU {#SNMPINDEX} - Power Redundancy Operational Mode'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.1.1.1.5.{#SNMPINDEX}'
+              key: 'mds.psu.power-redundancy-oper[{#SNMPINDEX}]'
+              history: 30d
+              trends: 180d
+              valuemap:
+                name: PowerRedundancyType
+            - uuid: 24c823e07f66452d9b4f0f80c347336a
+              name: 'PSU {#SNMPINDEX} - Power Redundancy Reason'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.1.1.1.6.{#SNMPINDEX}'
+              key: 'mds.psu.power-redundancy-reason[{#SNMPINDEX}]'
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+            - uuid: 7b113f4af4cc4e54814a79a80d7bc748
+              name: 'PSU {#SNMPINDEX} - Power Redundancy Mode'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.1.1.1.1.{#SNMPINDEX}'
+              key: 'mds.psu.power-redundancy[{#SNMPINDEX}]'
+              history: 30d
+              trends: 180d
+              valuemap:
+                name: PowerRedundancyType
+              trigger_prototypes:
+                - uuid: 90e11fa0174a4f06ae1af27b1c3ff02c
+                  expression: 'last(/Cisco MDS/mds.psu.power-redundancy[{#SNMPINDEX}])<>2'
+                  name: 'PSU {#SNMPINDEX} - Power Redundancy Mode is not "redundant"'
+                  priority: AVERAGE
+                  manual_close: 'YES'
+                  tags:
+                    - tag: Application
+                      value: 'Power Supply'
+            - uuid: 96c6495695a9471bab011eba08fba5ce
+              name: 'PSU {#SNMPINDEX} - Power Units'
+              type: SNMP_AGENT
+              snmp_oid: '1.3.6.1.4.1.9.9.117.1.1.1.1.2.{#SNMPINDEX}'
+              key: 'mds.psu.power-units[{#SNMPINDEX}]'
+              delay: 30m
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+          trigger_prototypes:
+            - uuid: 0e7a66c505c74548a480c9adf94559d3
+              expression: 'last(/Cisco MDS/mds.psu.power-redundancy[{#SNMPINDEX}])<>last(/Cisco MDS/mds.psu.power-redundancy-oper[{#SNMPINDEX}])'
+              name: 'PSU {#SNMPINDEX} - Power Redundancy Mode is wrong'
+              priority: WARNING
+              manual_close: 'YES'
+              tags:
+                - tag: Application
+                  value: 'Power Supply'
+      macros:
+        - macro: '{$NET.IF.IFALIAS.MATCHES}'
+          value: CHANGE_IF_NEEDED
+        - macro: '{$NET.IF.IFALIAS.NOT_MATCHES}'
+          value: '.*'
+      valuemaps:
+        - uuid: 724ba8d23d62447fada5fd49b4a3548f
+          name: FanStatus
+          mappings:
+            - value: '1'
+              newvalue: unknown
+            - value: '2'
+              newvalue: up
+            - value: '3'
+              newvalue: down
+            - value: '4'
+              newvalue: warning
+        - uuid: 3d8ccdda909f4927a08bbf03bbfc720a
+          name: PowerRedundancyType
+          mappings:
+            - value: '1'
+              newvalue: notsupported
+            - value: '2'
+              newvalue: redundant
+            - value: '3'
+              newvalue: combined
+            - value: '4'
+              newvalue: nonRedundant
+            - value: '5'
+              newvalue: psRedundant
+            - value: '6'
+              newvalue: inPwrSrcRedundant
+            - value: '7'
+              newvalue: psRedundantSingleInput

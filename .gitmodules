@@ -1,0 +1,3 @@
+[submodule "themes/darkeditor"]
+	path = themes/darkeditor
+	url = https://github.com/JingWangTW/dark-theme-editor.git

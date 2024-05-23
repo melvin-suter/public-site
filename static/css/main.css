@@ -1,0 +1,10 @@
+
+.sidebar-home {
+    font-size: 1.25rem !important;
+    font-weight: bold;
+    color: #fff !important;
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 1rem 0rem;
+}

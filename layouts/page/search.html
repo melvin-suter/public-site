@@ -1,0 +1,30 @@
+{{ define "main_article" }}
+
+<article class="main">
+
+    <div class="title">
+        <h1 class="title-header">
+            {{ .Title }}
+        </h1>
+    </div>
+
+    <div class="content">
+
+        <form id="search"
+            action='/search' method="get">
+            <label hidden for="search-input">Search site</label>
+            <input type="text" id="search-input" name="query"
+            placeholder="Type here to search">
+            <input type="submit" value="Search">
+        </form>
+
+        <div class="search-results" id="results">
+            <div class="result">
+                Enter a keyword above to search this site.
+            </div>
+        </div>
+    </div>
+</article>  
+{{ partial "search-index.html" . }}
+
+{{ end }}

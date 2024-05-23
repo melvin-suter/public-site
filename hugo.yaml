@@ -1,0 +1,38 @@
+baseURL: https://suter.dev/
+languageCode: en
+title: SuterDEV
+theme: darkeditor
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+params:
+  footer:
+    counter: false
+    language: false
+    hugoVersion: false
+    theme: false
+    modifiedTime: false
+    socialLink:
+      github: https://github.com/melvin-suter
+      facebook: ""
+      twitter: ""
+      #email: contact@suter.dev
+      email: ""
+      linkedin: https://ch.linkedin.com/in/melvin-suter-2885b9bb
+      instagram: https://www.instagram.com/suter.dev/
+      telegram: ""
+      medium: ""
+      vimeo: ""
+      youtube: ""
+  homePage:
+    siteLongDescription: Welcome to my home page. Feel free to look around.
+  globalFrontmatter:
+    author: Melvin
+    description: My website
+security:
+  enableInlineShortcodes: true
+frontmatter:
+  date:
+  - :default
+  - :fileModTime
