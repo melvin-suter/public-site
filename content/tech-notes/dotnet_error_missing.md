@@ -2,7 +2,7 @@
 title: The application 'add' does not exist.
 tags: 
 - linux
-- .net
+- dotnet
 ---
 
 You're trying to run `dotnet add package <PACKAGE>` on a RHEL based system and get this error:
