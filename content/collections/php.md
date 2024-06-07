@@ -1,5 +1,6 @@
 ---
-title: 'PHP Snippets'---
+title: 'PHP Snippets'
+---
 
 ## PHP Session Permission Fix (Remi)
 
